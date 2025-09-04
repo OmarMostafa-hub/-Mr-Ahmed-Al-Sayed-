@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إعدادات الطالب</title>
+   <link rel="icon" href="./Screenshot 2025-09-03 184055.png">
+  <style>
+    body {
+      font-family: "Cairo", sans-serif;
+      background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    nav {
+      background-color: #007bff;
+      padding: 10px 0;
+      width: 100%;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      display: inline-block;
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #ffd700;
+    }
+
+    form {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 450px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      text-align: right;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #007bff;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      color: #333;
+    }
+
+    input, select, textarea {
+      margin: 8px 0;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    button {
+      flex: 1;
+      padding: 12px;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #saveBtn {
+      background-color: #28a745;
+      color: #fff;
+    }
+
+    #saveBtn:hover {
+      background-color: #218838;
+    }
+
+    #backBtn {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    #backBtn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  
+
+  <nav>
+    <ul>
+      <li><a href="./index.html">الرئيسية</a></li>
+      <li><a href="./الدروس.html">الدروس</a></li>
+      <li><a href="./تواصل معنا .html">تواصل معنا</a></li>
+    </ul>
+  </nav>
+
+  <form id="studentForm">
+    <h2>📝 إعدادات الطالب</h2>
+
+    <label for="name">اسم الطالب 🧑‍🎓</label>
+    <input type="text" id="name" placeholder="اسم الطالب" required>
+
+    <label for="dob">تاريخ الميلاد 🎂</label>
+    <input type="date" id="dob" required>
+
+    <label for="grade">المرحلة الدراسية</label>
+    <select id="grade" required>
+      <option value="">اختر المرحلة</option>
+      <option value="الأول الإعدادي">الأول الإعدادي</option>
+      <option value="الثاني الإعدادي">الثاني الإعدادي</option>
+      <option value="الثالث الإعدادي">الثالث الإعدادي</option>
+      <option value="الثالث الإعدادي">الاول الثانوى</option>
+      <option value="الثالث الإعدادي">الثاني الثانوى</option>
+      <option value="الثالث الإعدادي">الثالث الثانوى</option>
+    </select>
+    
+
+    <label for="term">الترم الدراسي</label>
+    <select id="term" required>
+      <option value="">اختر الترم</option>
+      <option value="الترم الأول">الترم الأول</option>
+      <option value="الترم الثاني">الترم الثاني</option>
+    </select>
+
+    <label for="address">العنوان</label>
+    <textarea id="address" placeholder="اكتب عنوانك هنا" required></textarea>
+
+    <label for="parentName">اسم ولي الأمر</label>
+    <input type="text" id="parentName" placeholder="اسم ولي الأمر" required>
+
+    <label for="parentPhone">رقم هاتف ولي الأمر</label>
+    <input type="text" id="parentPhone" placeholder="رقم الهاتف" required>
+
+    <div class="btn-group">
+      <button type="submit" id="saveBtn">💾 حفظ البيانات</button>
+      <button type="button" id="backBtn">⬅ الرجوع</button>
+    </div>
+  </form>
+
+  <script>
+    // منع النسخ والاختيار والطباعة
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('copy', e => e.preventDefault());
+    document.addEventListener('cut', e => e.preventDefault());
+    document.addEventListener('paste', e => e.preventDefault());
+    document.addEventListener('selectstart', e => e.preventDefault());
+    document.addEventListener('keydown', function(e) {
+      if(e.ctrlKey && ['c','x','v','p'].includes(e.key)) e.preventDefault();
+    });
+
+    // حفظ البيانات والتحويل للفترة المجانية
+    document.getElementById('studentForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const dob = document.getElementById('dob').value.trim();
+      const grade = document.getElementById('grade').value;
+      const term = document.getElementById('term').value;
+      const address = document.getElementById('address').value.trim();
+      const parentName = document.getElementById('parentName').value.trim();
+      const parentPhone = document.getElementById('parentPhone').value.trim();
+
+      if(!name || !dob || !grade || !term || !address || !parentName || !parentPhone){
+        alert("يرجى تعبئة جميع الحقول بشكل صحيح");
+        return;
+      }
+
+      localStorage.setItem('studentName', name);
+      localStorage.setItem('dob', dob);
+      localStorage.setItem('grade', grade);
+      localStorage.setItem('term', term);
+      localStorage.setItem('address', address);
+      localStorage.setItem('parentName', parentName);
+      localStorage.setItem('parentPhone', parentPhone);
+      localStorage.setItem('trialStart', new Date().getTime());
+
+      window.location.href = "الفتره المجانيه.html";
+    });
+
+    // زر الرجوع للصفحة الرئيسية
+    document.getElementById('backBtn').addEventListener('click', () => {
+      window.location.href = "index.html";
+    });
+  </script>
+
+</body>
+</html>

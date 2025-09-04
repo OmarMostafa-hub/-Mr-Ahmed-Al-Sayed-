@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>الفترة التجريبية</title>
+   <link rel="icon" href="./Screenshot 2025-09-03 184055.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: "Cairo", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    nav {
+      background-color: #007bff;
+      padding: 10px 0;
+      width: 100%;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      display: inline-block;
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #ffd700;
+    }
+
+    .trial-container {
+      max-width: 650px;
+      width: 90%;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #007bff;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #333;
+      margin-bottom: 30px;
+      line-height: 1.8;
+    }
+
+    #countdown {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #dc3545;
+      margin-bottom: 20px;
+    }
+
+    iframe {
+      border-radius: 10px;
+      max-width: 100%;
+    }
+
+    button {
+      padding: 12px 30px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #subscribeBtn {
+      background-color: #28a745;
+      display: none;
+      margin-top: 20px;
+    }
+
+    #subscribeBtn:hover {
+      background-color: #218838;
+    }
+
+    #expiredMessage {
+      display: none;
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    #expiredMessage h1 {
+      color: #dc3545;
+    }
+
+    #expiredMessage p {
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+ 
+
+  <nav>
+    <ul>
+      <li><a href="./index.html">الرئيسية</a></li>
+      <li><a href="./الدروس.html">الدروس</a></li>
+      <li><a href="./تواصل معنا .html">تواصل معنا</a></li>
+    </ul>
+  </nav>
+
+  <div class="trial-container" id="startPage">
+    <h1>🎉 مرحباً بك في الفترة التجريبية</h1>
+    <p>اضغط على الزر أدناه لبدء الوصول المجاني لمدة ساعة واحدة! 🌟</p>
+    <button id="startBtn">🚀 ابدأ الفترة التجريبية</button>
+  </div>
+
+  <div class="trial-container" id="trialPage" style="display:none;">
+    <div id="countdown">01:00:00</div>
+    <h1>الفترة التجريبية</h1>
+    <p>استمتع بالوصول الكامل للمحتوى المجاني أثناء الساعة التجريبية! 📚</p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/6vGkZkpzaH8" frameborder="0" allowfullscreen></iframe>
+    <button id="subscribeBtn">💳 اشترك الآن</button>
+  </div>
+
+  <div class="trial-container" id="expiredMessage">
+    <h1>⚠️ لقد استخدمت الفترة التجريبية من قبل</h1>
+    <p>لا يمكنك تفعيلها مرة أخرى.</p>
+    <button onclick="window.location.href='الدفع.html'">💳 اشترك الآن</button>
+  </div>
+
+  <script>
+    const startBtn = document.getElementById('startBtn');
+    const startPage = document.getElementById('startPage');
+    const trialPage = document.getElementById('trialPage');
+    const countdownEl = document.getElementById('countdown');
+    const subscribeBtn = document.getElementById('subscribeBtn');
+    const expiredMessage = document.getElementById('expiredMessage');
+    let countdownInterval;
+
+    function startCountdown(endTime) {
+      clearInterval(countdownInterval);
+      countdownInterval = setInterval(() => {
+        const now = new Date().getTime();
+        const timeLeft = Math.floor((endTime - now) / 1000);
+
+        if (timeLeft > 0) {
+          const hours = Math.floor(timeLeft / 3600);
+          const minutes = Math.floor((timeLeft % 3600) / 60);
+          const seconds = timeLeft % 60;
+
+          countdownEl.textContent =
+            `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+        } else {
+          clearInterval(countdownInterval);
+          countdownEl.textContent = "⏰ انتهت الفترة التجريبية";
+          subscribeBtn.style.display = "inline-block";
+          localStorage.setItem("trialExpired", "true");
+        }
+      }, 1000);
+    }
+
+    window.onload = () => {
+      const trialEnd = localStorage.getItem("trialEnd");
+      const trialExpired = localStorage.getItem("trialExpired");
+
+      if (trialExpired === "true") {
+        startPage.style.display = "none";
+        trialPage.style.display = "none";
+        expiredMessage.style.display = "block";
+      } else if (trialEnd) {
+        const now = new Date().getTime();
+        if (now < trialEnd) {
+          startPage.style.display = "none";
+          trialPage.style.display = "block";
+          startCountdown(trialEnd);
+        } else {
+          localStorage.setItem("trialExpired", "true");
+          startPage.style.display = "none";
+          trialPage.style.display = "none";
+          expiredMessage.style.display = "block";
+        }
+      }
+    };
+
+    startBtn.addEventListener('click', () => {
+      const now = new Date().getTime();
+      const endTime = now + (60 * 60 * 1000); // ساعة واحدة
+      localStorage.setItem("trialEnd", endTime);
+
+      startPage.style.display = "none";
+      trialPage.style.display = "block";
+      startCountdown(endTime);
+    });
+
+    subscribeBtn.addEventListener('click', () => {
+      window.location.href = "الدفع.html";
+    });
+  </script>
+
+</body>
+</html>

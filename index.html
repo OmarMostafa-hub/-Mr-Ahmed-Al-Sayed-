@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>دروس أونلاين</title>
+  <link rel="icon" href="./Screenshot 2025-09-03 184055.png">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Cairo", sans-serif;
+      background: linear-gradient(135deg, #007bff, #00c6ff);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      text-align: center;
+      padding-top: 40px;
+    }
+
+    nav {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 10px 0;
+      width: 100%;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      display: inline-block;
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #ffd700;
+    }
+
+    header {
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin: 0;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    #greeting {
+      font-size: 1.4rem;
+      margin: 10px 0;
+    }
+
+    p {
+      font-size: 1.3rem;
+      max-width: 600px;
+      line-height: 1.8;
+    }
+
+    .teacher-img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 4px solid #fff;
+      margin: 20px 0;
+      object-fit: cover;
+    }
+
+    button {
+      background: #fff;
+      color: #007bff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 25px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #007bff;
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+ 
+    
+
+  <header>
+    <h1>📚 راجع الرياضيات</h1>
+    <div id="greeting"></div>
+  </header>
+
+  <img src="./Screenshot 2025-09-03 184055.png" alt="ملك الرياضيات" class="teacher-img" />
+
+  <p>
+    أهلاً بيكم في موقع <strong>دروس أونلاين</strong> ✨  
+    <strong>مع الأستاذ: أحمد السيد</strong> هتلاقي كل دروس الرياضيات من الصف الأول الإعدادي حتى الصف الثالث الثانوي والشروحات بطريقة سهلة ومبسطة.  
+    سجل دخولك وابدأ رحلتك في التعلم من أي مكان.
+  </p>
+
+  <button id="startBtn">🚀 ابدأ الآن</button>
+
+  <footer>
+    &copy; 2025 دروس أونلاين - جميع الحقوق محفوظة
+  </footer>
+
+  <!-- كود Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-analytics.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyA5mxplcRXQAe8wV0KbVVOcaei7aEbAkwk",
+      authDomain: "doroosonline-da8fa.firebaseapp.com",
+      projectId: "doroosonline-da8fa",
+      storageBucket: "doroosonline-da8fa.firebasestorage.app",
+      messagingSenderId: "951028922164",
+      appId: "1:951028922164:web:871a2a34fee6f259589761",
+      measurementId: "G-GLH5QDH0ZM"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+
+  <script>
+    // منع النسخ والاختيار والطباعة
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('copy', e => e.preventDefault());
+    document.addEventListener('cut', e => e.preventDefault());
+    document.addEventListener('paste', e => e.preventDefault());
+    document.addEventListener('selectstart', e => e.preventDefault());
+    document.addEventListener('keydown', function(e) {
+        if(e.ctrlKey && (e.key === 'c' || e.key === 'x' || e.key === 'v' || e.key === 'p')) {
+            e.preventDefault();
+        }
+    });
+
+    // زر ابدأ الآن يفتح settings.html مع حفظ وقت بدء التجربة
+    document.getElementById('startBtn').addEventListener('click', () => {
+        localStorage.setItem('trialStart', new Date().getTime());
+        window.location.href = "settings.html";
+    });
+
+    // رسالة ترحيب حسب الوقت
+    const greeting = document.getElementById("greeting");
+    const hour = new Date().getHours();
+    if (hour < 12) {
+      greeting.textContent = "صباح الخير! جاهز تبدأ رحلتك؟";
+    } else if (hour < 18) {
+      greeting.textContent = "صباح الخير! وقت ممتاز للتعلم.";
+    } else {
+      greeting.textContent = "مساء الخير! خلينا نراجع مع بعض.";
+    }
+  </script>
+
+</body>
+</html>

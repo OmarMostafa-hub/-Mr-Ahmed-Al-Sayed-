@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دروس الرياضيات</title>
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #f0f4f8;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .lesson-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      padding: 1rem;
+    }
+    .lesson-card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 1rem;
+      transition: transform 0.2s;
+    }
+    .lesson-card:hover {
+      transform: scale(1.02);
+    }
+    .lesson-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: #34495e;
+    }
+    .lesson-desc {
+      font-size: 0.95rem;
+      color: #7f8c8d;
+    }
+    .lesson-link {
+      display: block;
+      margin-top: 0.8rem;
+      text-align: center;
+      background-color: #27ae60;
+      color: white;
+      padding: 0.5rem;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+    .lesson-link:hover {
+      background-color: #219150;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>دروس الرياضيات</h1>
+  </header>
+
+  <section class="lesson-container">
+    <div class="lesson-card">
+      <div class="lesson-title">الجبر: المعادلات الخطية</div>
+      <div class="lesson-desc">شرح كيفية حل المعادلات من الدرجة الأولى باستخدام خطوات بسيطة.</div>
+      <a href="algebra1.html" class="lesson-link">ابدأ الدرس</a>
+    </div>
+
+    <div class="lesson-card">
+      <div class="lesson-title">الهندسة: الزوايا والمثلثات</div>
+      <div class="lesson-desc">تعرف على أنواع الزوايا وخصائص المثلثات وكيفية حسابها.</div>
+      <a href="geometry1.html" class="lesson-link">ابدأ الدرس</a>
+    </div>
+
+    <div class="lesson-card">
+      <div class="lesson-title">الإحصاء: المتوسط والانحراف المعياري</div>
+      <div class="lesson-desc">مقدمة في الإحصاء مع أمثلة عملية لحساب المتوسط والانحراف.</div>
+      <a href="statistics1.html" class="lesson-link">ابدأ الدرس</a>
+    </div>
+
+    <div class="lesson-card">
+      <div class="lesson-title">التفاضل والتكامل: المشتقة</div>
+      <div class="lesson-desc">شرح مفهوم المشتقة وكيفية استخدامها في حل المسائل الرياضية.</div>
+      <a href="calculus1.html" class="lesson-link">ابدأ الدرس</a>
+    </div>
+  </section>
+
+</body>
+</html>
